@@ -122,10 +122,6 @@ const Index = () => {
               transition: "opacity 1s ease 1.4s, transform 1s ease 1.4s",
             }}
           >
-            <p className="font-cormorant-sc text-xs tracking-[0.4em] uppercase mb-5" style={{ color: "#8a6530" }}>
-              Алкыш
-            </p>
-
             <div
               className="relative px-6 py-8"
               style={{ background: "rgba(252,249,242,0.82)", border: "1px solid rgba(160,120,64,0.2)" }}
