@@ -53,35 +53,25 @@ const Index = () => {
           transition: "opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s",
         }}
       >
-        {/*
-          Единый фон с парой. Картинка: арка/небо сверху, пара внизу.
-          Высота секции = реальная высота изображения (соотношение ~9:13.5 ≈ 1:1.5).
-          Текст плавает поверх неба, пара чётко в нижней трети без касания.
-        */}
+        {/* Верхний блок: текст на фоне узора */}
         <div
-          className="relative"
+          className="relative flex flex-col items-center px-8 pt-10 pb-12"
           style={{
-            backgroundImage: `url('${BG_COUPLE}')`,
+            backgroundImage: `url('${BG_PATTERN}')`,
             backgroundSize: "cover",
             backgroundPosition: "center top",
-            backgroundRepeat: "no-repeat",
-            paddingBottom: "148%", /* высота = 148% от ширины — реальное соотношение сторон картинки */
           }}
         >
-          {/* Оверлей только на верхние ~35% — небо чуть светлее для читаемости, пара нетронута */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "linear-gradient(to bottom, rgba(248,244,236,0.6) 0%, rgba(248,244,236,0.35) 20%, rgba(248,244,236,0.05) 35%, rgba(248,244,236,0) 42%)",
-            }}
+            style={{ background: "rgba(248,244,236,0.6)" }}
           />
 
-          {/* Текст поверх неба/арки */}
-          <div className="absolute top-0 left-0 right-0 z-10 flex flex-col items-center px-8 pt-10">
+          <div className="relative z-10 flex flex-col items-center w-full gap-7">
 
             {/* Имена */}
             <div
-              className="text-center mb-7 w-full"
+              className="text-center w-full"
               style={{
                 opacity: opened ? 1 : 0,
                 transform: opened ? "translateY(0)" : "translateY(24px)",
@@ -94,23 +84,15 @@ const Index = () => {
                 <div className="h-px w-10" style={{ background: "#8a6530" }} />
               </div>
 
-              <h2
-                className="font-cormorant italic font-light"
-                style={{ fontSize: "clamp(2.6rem, 11vw, 4rem)", color: "#2e1a08", lineHeight: 1.1 }}
-              >
+              <h2 className="font-cormorant italic font-light" style={{ fontSize: "clamp(2.6rem, 11vw, 4rem)", color: "#2e1a08", lineHeight: 1.1 }}>
                 Аэлита
               </h2>
-
               <div className="flex items-center justify-center gap-4 my-2">
                 <div className="h-px w-8" style={{ background: "rgba(160,120,64,0.5)" }} />
                 <span className="font-cormorant text-3xl font-light" style={{ color: "#a07840" }}>&</span>
                 <div className="h-px w-8" style={{ background: "rgba(160,120,64,0.5)" }} />
               </div>
-
-              <h2
-                className="font-cormorant italic font-light"
-                style={{ fontSize: "clamp(2.6rem, 11vw, 4rem)", color: "#2e1a08", lineHeight: 1.1 }}
-              >
+              <h2 className="font-cormorant italic font-light" style={{ fontSize: "clamp(2.6rem, 11vw, 4rem)", color: "#2e1a08", lineHeight: 1.1 }}>
                 Тузагаш
               </h2>
 
@@ -123,70 +105,28 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Стихи */}
-            <div
-              className="text-center w-full mb-7"
-              style={{
-                opacity: opened ? 1 : 0,
-                transform: opened ? "translateY(0)" : "translateY(30px)",
-                transition: "opacity 1s ease 1.4s, transform 1s ease 1.4s",
-              }}
-            >
-              <p className="font-cormorant text-lg font-light leading-[1.85]" style={{ color: "#3a2210" }}>
-                Јайдыҥ јараш кӱӱнинде,<br />
-                Јаҥы кӱйген очокко,<br />
-                Јаҥарлап кожоҥ јайыгар,<br />
-                Јараш алкыштар айдыгар.
-              </p>
-
-              <div className="my-4 flex justify-center">
-                <div className="h-px w-20" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
-              </div>
-
-              <p className="font-cormorant text-base font-light leading-[1.85] italic" style={{ color: "#5a3820" }}>
-                Бистиҥ кудабыска<br />
-                акту јӱрегистеҥ<br />
-                кычырып турубыс.
-              </p>
-            </div>
-
             {/* Дата и место */}
             <div
-              className="text-center w-full flex flex-col items-center gap-4"
+              className="text-center w-full flex flex-col items-center gap-3"
               style={{
                 opacity: opened ? 1 : 0,
-                transform: opened ? "translateY(0)" : "translateY(30px)",
-                transition: "opacity 1s ease 1.9s, transform 1s ease 1.9s",
+                transform: opened ? "translateY(0)" : "translateY(24px)",
+                transition: "opacity 1s ease 1.3s, transform 1s ease 1.3s",
               }}
             >
-              <div className="flex items-center gap-3">
-                <div className="h-px w-10" style={{ background: "#8a6530" }} />
-                <span style={{ color: "#8a6530", fontSize: "0.75rem" }}>✦</span>
-                <div className="h-px w-10" style={{ background: "#8a6530" }} />
-              </div>
-
               <p className="font-cormorant-sc font-light tracking-[0.1em]" style={{ fontSize: "clamp(1.7rem, 8vw, 2.4rem)", color: "#4a2e10" }}>
                 14.08.2026
               </p>
-
               <div className="h-px w-14" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
-
               <div className="flex flex-col gap-0.5">
-                <p className="font-cormorant text-xl font-light" style={{ color: "#3a2210" }}>
-                  Кош-Агач јурт
-                </p>
-                <p className="font-cormorant italic text-lg font-light" style={{ color: "#5a3820" }}>
-                  кафе «Туштажу»
-                </p>
+                <p className="font-cormorant text-xl font-light" style={{ color: "#3a2210" }}>Кош-Агач јурт</p>
+                <p className="font-cormorant italic text-lg font-light" style={{ color: "#5a3820" }}>кафе «Туштажу»</p>
               </div>
-
               <div className="h-px w-14" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
-
               <p className="font-cormorant-sc font-light tracking-[0.12em]" style={{ fontSize: "clamp(1.6rem, 8vw, 2.2rem)", color: "#4a2e10" }}>
                 16:00
               </p>
-
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <div className="h-px w-8" style={{ background: "#8a6530" }} />
                 <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
                 <span style={{ color: "#a07840", fontSize: "0.9rem" }}>✦</span>
@@ -195,9 +135,43 @@ const Index = () => {
               </div>
             </div>
 
+            {/* Стихи */}
+            <div
+              className="text-center w-full"
+              style={{
+                opacity: opened ? 1 : 0,
+                transform: opened ? "translateY(0)" : "translateY(30px)",
+                transition: "opacity 1s ease 1.7s, transform 1s ease 1.7s",
+              }}
+            >
+              <p className="font-cormorant text-lg font-light leading-[1.85]" style={{ color: "#3a2210" }}>
+                Јайдыҥ јараш кӱӱнинде,<br />
+                Јаҥы кӱйген очокко,<br />
+                Јаҥарлап кожоҥ јайыгар,<br />
+                Јараш алкыштар айдыгар.
+              </p>
+              <div className="my-4 flex justify-center">
+                <div className="h-px w-20" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
+              </div>
+              <p className="font-cormorant text-base font-light leading-[1.85] italic" style={{ color: "#5a3820" }}>
+                Бистиҥ кудабыска<br />
+                акту јӱрегистеҥ<br />
+                кычырып турубыс.
+              </p>
+            </div>
+
           </div>
-          {/* Пара занимает нижнюю треть фона — чистая, без оверлея */}
         </div>
+
+        {/* Нижний блок: пара в оригинальном размере */}
+        <div
+          style={{
+            backgroundImage: `url('${BG_COUPLE}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+            paddingBottom: "148%",
+          }}
+        />
       </div>
     </div>
   );
