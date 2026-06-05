@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+const BG_COUPLE = "https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c077ee5e-7c57-4cae-b3cd-f7f368fbb9e8.png";
+const BG_PATTERN = "https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c832a4b3-f139-4181-a6ac-127733a0a437.png";
+
 const Index = () => {
   const [opened, setOpened] = useState(false);
 
@@ -12,7 +15,7 @@ const Index = () => {
         className="fixed flex flex-col items-center justify-center"
         style={{
           inset: 0,
-          backgroundImage: `url('https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c832a4b3-f139-4181-a6ac-127733a0a437.png')`,
+          backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           opacity: opened ? 0 : 1,
@@ -42,7 +45,7 @@ const Index = () => {
         </button>
       </div>
 
-      {/* === СЛАЙД 2+: СКРОЛЛИРУЕМАЯ ЧАСТЬ === */}
+      {/* === ОСНОВНАЯ ЧАСТЬ === */}
       <div
         style={{
           opacity: opened ? 1 : 0,
@@ -51,29 +54,30 @@ const Index = () => {
         }}
       >
 
-        {/* — Секция: имена + стихи — */}
+        {/* — Секция 1: текст сверху, пара снизу — */}
         <div
-          className="relative flex flex-col items-center"
+          className="relative flex flex-col"
           style={{
-            minHeight: "100dvh",
-            backgroundImage: `url('https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c077ee5e-7c57-4cae-b3cd-f7f368fbb9e8.png')`,
+            minHeight: "170dvh",
+            backgroundImage: `url('${BG_COUPLE}')`,
             backgroundSize: "cover",
-            backgroundPosition: "center top",
+            backgroundPosition: "center bottom",  /* пара всегда видна снизу */
           }}
         >
-          {/* Мягкий градиент — имена поверх неба, стихи на светлом низу */}
+          {/* Оверлей только в верхней трети — для читаемости текста, низ абсолютно чистый */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "linear-gradient(to bottom, rgba(248,244,236,0) 0%, rgba(248,244,236,0) 30%, rgba(248,244,236,0.6) 55%, rgba(248,244,236,0.92) 72%, rgba(248,244,236,1) 88%)",
+              background: "linear-gradient(to bottom, rgba(248,244,236,0.75) 0%, rgba(248,244,236,0.55) 20%, rgba(248,244,236,0.15) 38%, rgba(248,244,236,0) 50%)",
             }}
           />
 
-          <div className="relative z-10 flex flex-col items-center w-full px-8 pt-[52%] pb-16">
+          {/* Текст прибит к верху секции */}
+          <div className="relative z-10 flex flex-col items-center w-full px-8 pt-12 pb-0">
 
             {/* Имена */}
             <div
-              className="text-center mb-10 w-full"
+              className="text-center mb-8 w-full"
               style={{
                 opacity: opened ? 1 : 0,
                 transform: opened ? "translateY(0)" : "translateY(24px)",
@@ -115,7 +119,7 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Стихи — просто текст, без рамки */}
+            {/* Стихи */}
             <div
               className="text-center w-full"
               style={{
@@ -142,19 +146,19 @@ const Index = () => {
               </p>
             </div>
           </div>
+          {/* Пара занимает нижние ~55% — без оверлея, чёткие */}
         </div>
 
-        {/* — Секция: время и место — */}
+        {/* — Секция 2: дата и место — */}
         <div
           className="relative flex flex-col items-center justify-center px-8 py-20"
           style={{
             minHeight: "60dvh",
-            backgroundImage: `url('https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c832a4b3-f139-4181-a6ac-127733a0a437.png')`,
+            backgroundImage: `url('${BG_PATTERN}')`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
         >
-          {/* Лёгкий оверлей */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: "rgba(248,244,236,0.72)" }}
@@ -162,24 +166,18 @@ const Index = () => {
 
           <div className="relative z-10 flex flex-col items-center text-center gap-6 w-full">
 
-            {/* Орнамент сверху */}
             <div className="flex items-center gap-3">
               <div className="h-px w-10" style={{ background: "#8a6530" }} />
               <span style={{ color: "#8a6530", fontSize: "0.75rem" }}>✦</span>
               <div className="h-px w-10" style={{ background: "#8a6530" }} />
             </div>
 
-            {/* Дата */}
-            <div>
-              <p className="font-cormorant-sc font-light tracking-[0.12em]" style={{ fontSize: "clamp(2rem, 10vw, 3rem)", color: "#4a2e10" }}>
-                14.08.2026
-              </p>
-            </div>
+            <p className="font-cormorant-sc font-light tracking-[0.12em]" style={{ fontSize: "clamp(2rem, 10vw, 3rem)", color: "#4a2e10" }}>
+              14.08.2026
+            </p>
 
-            {/* Разделитель */}
             <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
 
-            {/* Место */}
             <div className="flex flex-col gap-1">
               <p className="font-cormorant text-2xl font-light" style={{ color: "#3a2210" }}>
                 Кош-Агач јурт
@@ -189,15 +187,12 @@ const Index = () => {
               </p>
             </div>
 
-            {/* Разделитель */}
             <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
 
-            {/* Время */}
             <p className="font-cormorant-sc font-light tracking-[0.15em]" style={{ fontSize: "clamp(1.8rem, 9vw, 2.6rem)", color: "#4a2e10" }}>
               16:00
             </p>
 
-            {/* Орнамент снизу */}
             <div className="flex items-center gap-3 mt-2">
               <div className="h-px w-8" style={{ background: "#8a6530" }} />
               <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
