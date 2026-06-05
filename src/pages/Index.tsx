@@ -53,27 +53,33 @@ const Index = () => {
           transition: "opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s",
         }}
       >
-
-        {/* — Секция 1: текст сверху, пара снизу — */}
+        {/*
+          Единая секция: фон с парой.
+          Изображение: арка сверху, пара снизу.
+          backgroundPosition: center top — арка+небо сверху, пара внизу.
+          Высота подобрана так, чтобы пара отображалась в оригинальном масштабе в конце.
+        */}
         <div
           className="relative flex flex-col"
           style={{
-            minHeight: "170dvh",
             backgroundImage: `url('${BG_COUPLE}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",  /* пара всегда видна снизу */
+            backgroundSize: "100% auto",   /* фиксированная ширина, высота пропорциональна */
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "#f2ece0",    /* цвет фона под изображением (продолжение тона) */
           }}
         >
-          {/* Оверлей только в верхней трети — для читаемости текста, низ абсолютно чистый */}
+          {/* Лёгкий оверлей только поверх верхней части для читаемости */}
           <div
-            className="absolute inset-0 pointer-events-none"
+            className="absolute top-0 left-0 right-0 pointer-events-none"
             style={{
-              background: "linear-gradient(to bottom, rgba(248,244,236,0.75) 0%, rgba(248,244,236,0.55) 20%, rgba(248,244,236,0.15) 38%, rgba(248,244,236,0) 50%)",
+              height: "60%",
+              background: "linear-gradient(to bottom, rgba(248,244,236,0.6) 0%, rgba(248,244,236,0.3) 60%, rgba(248,244,236,0) 100%)",
             }}
           />
 
-          {/* Текст прибит к верху секции */}
-          <div className="relative z-10 flex flex-col items-center w-full px-8 pt-12 pb-0">
+          {/* Весь текст сверху */}
+          <div className="relative z-10 flex flex-col items-center w-full px-8 pt-10 pb-8">
 
             {/* Имена */}
             <div
@@ -121,7 +127,7 @@ const Index = () => {
 
             {/* Стихи */}
             <div
-              className="text-center w-full"
+              className="text-center w-full mb-8"
               style={{
                 opacity: opened ? 1 : 0,
                 transform: opened ? "translateY(0)" : "translateY(30px)",
@@ -145,64 +151,71 @@ const Index = () => {
                 кычырып турубыс.
               </p>
             </div>
-          </div>
-          {/* Пара занимает нижние ~55% — без оверлея, чёткие */}
-        </div>
 
-        {/* — Секция 2: дата и место — */}
-        <div
-          className="relative flex flex-col items-center justify-center px-8 py-20"
-          style={{
-            minHeight: "60dvh",
-            backgroundImage: `url('${BG_PATTERN}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "rgba(248,244,236,0.72)" }}
+            {/* Дата и место — сразу после стихов */}
+            <div
+              className="text-center w-full flex flex-col items-center gap-5"
+              style={{
+                opacity: opened ? 1 : 0,
+                transform: opened ? "translateY(0)" : "translateY(30px)",
+                transition: "opacity 1s ease 1.9s, transform 1s ease 1.9s",
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-px w-10" style={{ background: "#8a6530" }} />
+                <span style={{ color: "#8a6530", fontSize: "0.75rem" }}>✦</span>
+                <div className="h-px w-10" style={{ background: "#8a6530" }} />
+              </div>
+
+              <p className="font-cormorant-sc font-light tracking-[0.12em]" style={{ fontSize: "clamp(2rem, 10vw, 2.8rem)", color: "#4a2e10" }}>
+                14.08.2026
+              </p>
+
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
+
+              <div className="flex flex-col gap-1">
+                <p className="font-cormorant text-2xl font-light" style={{ color: "#3a2210" }}>
+                  Кош-Агач јурт
+                </p>
+                <p className="font-cormorant italic text-xl font-light" style={{ color: "#5a3820" }}>
+                  кафе «Туштажу»
+                </p>
+              </div>
+
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
+
+              <p className="font-cormorant-sc font-light tracking-[0.15em]" style={{ fontSize: "clamp(1.8rem, 9vw, 2.4rem)", color: "#4a2e10" }}>
+                16:00
+              </p>
+
+              <div className="flex items-center gap-3">
+                <div className="h-px w-8" style={{ background: "#8a6530" }} />
+                <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
+                <span style={{ color: "#a07840", fontSize: "0.9rem" }}>✦</span>
+                <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
+                <div className="h-px w-8" style={{ background: "#8a6530" }} />
+              </div>
+            </div>
+
+            {/* Отступ перед парой — чтобы пара оказалась после всего текста */}
+            <div style={{ height: "8vw" }} />
+          </div>
+
+          {/* Пара — картинка вставлена как img, точный оригинальный размер, без растяжки */}
+          <img
+            src={BG_COUPLE}
+            alt=""
+            style={{
+              width: "100%",
+              display: "block",
+              marginTop: "-30%",          /* поднимаем картинку вверх, чтобы арка совпала с фоном */
+              position: "relative",
+              zIndex: 1,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
           />
-
-          <div className="relative z-10 flex flex-col items-center text-center gap-6 w-full">
-
-            <div className="flex items-center gap-3">
-              <div className="h-px w-10" style={{ background: "#8a6530" }} />
-              <span style={{ color: "#8a6530", fontSize: "0.75rem" }}>✦</span>
-              <div className="h-px w-10" style={{ background: "#8a6530" }} />
-            </div>
-
-            <p className="font-cormorant-sc font-light tracking-[0.12em]" style={{ fontSize: "clamp(2rem, 10vw, 3rem)", color: "#4a2e10" }}>
-              14.08.2026
-            </p>
-
-            <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
-
-            <div className="flex flex-col gap-1">
-              <p className="font-cormorant text-2xl font-light" style={{ color: "#3a2210" }}>
-                Кош-Агач јурт
-              </p>
-              <p className="font-cormorant italic text-xl font-light" style={{ color: "#5a3820" }}>
-                кафе «Туштажу»
-              </p>
-            </div>
-
-            <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #a07840, transparent)" }} />
-
-            <p className="font-cormorant-sc font-light tracking-[0.15em]" style={{ fontSize: "clamp(1.8rem, 9vw, 2.6rem)", color: "#4a2e10" }}>
-              16:00
-            </p>
-
-            <div className="flex items-center gap-3 mt-2">
-              <div className="h-px w-8" style={{ background: "#8a6530" }} />
-              <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
-              <span style={{ color: "#a07840", fontSize: "0.9rem" }}>✦</span>
-              <span style={{ color: "#8a6530", fontSize: "0.6rem" }}>✦</span>
-              <div className="h-px w-8" style={{ background: "#8a6530" }} />
-            </div>
-          </div>
         </div>
-
       </div>
     </div>
   );
