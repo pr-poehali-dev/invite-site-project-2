@@ -13,68 +13,38 @@ const Index = () => {
 
       {/* === СЛАЙД 1: АЙТТЫРУ === */}
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center transition-all duration-1000"
+        className="fixed flex flex-col items-center justify-center"
         style={{
-          maxWidth: 480,
-          margin: "0 auto",
-          left: "50%",
-          transform: "translateX(-50%)",
+          inset: 0,
           backgroundImage: `url('https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c832a4b3-f139-4181-a6ac-127733a0a437.png')`,
           backgroundSize: "cover",
-          backgroundPosition: "center top",
+          backgroundPosition: "center center",
           opacity: opened ? 0 : 1,
           pointerEvents: opened ? "none" : "all",
           zIndex: opened ? 0 : 20,
           transition: "opacity 1.2s ease",
         }}
       >
-        {/* Top ornament */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-          <div className="w-3 h-3 rotate-45 border" style={{ borderColor: "#8a6530" }} />
-          <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, #8a6530, transparent)" }} />
-        </div>
+        <h1
+          className="font-cormorant-sc font-light text-center"
+          style={{ fontSize: "clamp(4.5rem, 22vw, 8rem)", color: "#4a2e10", letterSpacing: "0.08em", lineHeight: 1 }}
+        >
+          Айттыру
+        </h1>
 
-        <div className="flex flex-col items-center gap-10 px-12 text-center">
-          <p className="font-cormorant-sc text-xs tracking-[0.5em] uppercase" style={{ color: "#8a6530" }}>
-            Сизди чакырып турубыс
-          </p>
-
-          <div>
-            <h1
-              className="font-cormorant-sc font-light"
-              style={{ fontSize: "clamp(4rem, 20vw, 6.5rem)", color: "#4a2e10", letterSpacing: "0.06em", lineHeight: 1 }}
-            >
-              Айттыру
-            </h1>
-            <div className="mt-4 flex items-center gap-3 justify-center">
-              <div className="h-px w-10" style={{ background: "#a07840" }} />
-              <span style={{ color: "#a07840" }}>✦</span>
-              <div className="h-px w-10" style={{ background: "#a07840" }} />
-            </div>
-          </div>
-
-          <button
-            onClick={handleOpen}
-            className="flex flex-col items-center gap-3 group"
-            style={{ background: "none", border: "none", cursor: "pointer" }}
+        {/* Tap hint at bottom */}
+        <button
+          onClick={handleOpen}
+          className="absolute bottom-16 flex flex-col items-center gap-2 group"
+          style={{ background: "none", border: "none", cursor: "pointer", left: "50%", transform: "translateX(-50%)" }}
+        >
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
+            style={{ border: "1px solid rgba(160,120,64,0.5)", background: "rgba(248,244,236,0.35)" }}
           >
-            <span className="font-montserrat text-xs tracking-[0.35em] uppercase font-light" style={{ color: "#8a6530" }}>
-              Ачыгар
-            </span>
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
-              style={{ border: "1px solid rgba(160,120,64,0.6)", background: "rgba(248,244,236,0.4)" }}
-            >
-              <Icon name="ChevronDown" size={20} style={{ color: "#8a6530" }} />
-            </div>
-          </button>
-        </div>
-
-        {/* Bottom ornament */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-          <div className="w-px h-8" style={{ background: "linear-gradient(to top, #8a6530, transparent)" }} />
-          <div className="w-3 h-3 rotate-45 border" style={{ borderColor: "#8a6530" }} />
-        </div>
+            <Icon name="ChevronDown" size={20} style={{ color: "#8a6530" }} />
+          </div>
+        </button>
       </div>
 
       {/* === СЛАЙД 2: ОСНОВНАЯ ЧАСТЬ === */}
