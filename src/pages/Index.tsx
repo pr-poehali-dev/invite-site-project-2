@@ -12,7 +12,7 @@ const Divider = () => (
 );
 
 function useFadeIn() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | HTMLImageElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -54,10 +54,6 @@ export default function Index() {
       style={{
         maxWidth: 480,
         margin: "0 auto",
-        height: "100dvh",
-        overflowY: "scroll",
-        scrollSnapType: "y proximity",
-        scrollBehavior: "smooth",
       }}
     >
 
@@ -66,7 +62,6 @@ export default function Index() {
         className="relative flex flex-col items-center justify-center"
         style={{
           height: "100dvh",
-          scrollSnapAlign: "start",
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -121,7 +116,6 @@ export default function Index() {
         className="relative flex flex-col items-center justify-center text-center px-10"
         style={{
           height: "100dvh",
-          scrollSnapAlign: "start",
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -165,7 +159,6 @@ export default function Index() {
         className="relative flex flex-col items-center justify-center text-center px-10"
         style={{
           height: "100dvh",
-          scrollSnapAlign: "start",
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -198,7 +191,6 @@ export default function Index() {
         className="relative flex flex-col items-center justify-center text-center px-10"
         style={{
           height: "100dvh",
-          scrollSnapAlign: "start",
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -247,26 +239,13 @@ export default function Index() {
         </div>
       </div>
 
-      {/* ── СЛАЙД 5: Пара — целиком, без обрезки ── */}
-      <div
+      {/* ── СЛАЙД 5: Пара — целиком ── */}
+      <img
         ref={couple.ref}
-        className="flex items-center justify-center"
-        style={{
-          minHeight: "100dvh",
-          scrollSnapAlign: "start",
-          background: "#f5efe3",
-        }}
-      >
-        <img
-          src={BG_COUPLE}
-          alt="пара"
-          style={{
-            width: "100%",
-            height: "auto",
-            display: "block",
-          }}
-        />
-      </div>
+        src={BG_COUPLE}
+        alt="пара"
+        style={{ width: "100%", height: "auto", display: "block" }}
+      />
 
     </div>
   );
