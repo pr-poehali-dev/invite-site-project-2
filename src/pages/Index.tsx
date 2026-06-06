@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const BG_PATTERN = "https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/c832a4b3-f139-4181-a6ac-127733a0a437.png";
-const BG_COUPLE = "https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/eb8ba983-3673-40b3-9910-a93b4498145f.jpeg";
+const BG_COUPLE = "https://cdn.poehali.dev/projects/fc69c122-ca1e-48f2-a04e-677a5b3ed5fa/bucket/50c9ce63-37d3-4cfe-a4bc-a139bc5eda3a.jpeg";
 
 const Divider = () => (
   <div className="flex items-center justify-center gap-2 my-4">
@@ -247,17 +247,26 @@ export default function Index() {
         </div>
       </div>
 
-      {/* ── СЛАЙД 5: Пара — чистая, без оверлеев ── */}
+      {/* ── СЛАЙД 5: Пара — целиком, без обрезки ── */}
       <div
         ref={couple.ref}
+        className="flex items-center justify-center"
         style={{
-          height: "100dvh",
+          minHeight: "100dvh",
           scrollSnapAlign: "start",
-          backgroundImage: `url('${BG_COUPLE}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
+          background: "#f5efe3",
         }}
-      />
+      >
+        <img
+          src={BG_COUPLE}
+          alt="пара"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+          }}
+        />
+      </div>
 
     </div>
   );
