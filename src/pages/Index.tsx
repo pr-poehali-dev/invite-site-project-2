@@ -36,9 +36,6 @@ export default function Index() {
 
   const handleOpen = () => {
     setOpened(true);
-    setTimeout(() => {
-      scrollRef.current?.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-    }, 900);
   };
 
   const fade = (visible: boolean, delay = 0) => ({
@@ -59,12 +56,15 @@ export default function Index() {
 
       {/* ── СЛАЙД 1: Айттыру ── */}
       <div
-        className="relative flex flex-col items-center justify-center"
+        className="fixed inset-0 flex flex-col items-center justify-center"
         style={{
-          height: "100dvh",
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          opacity: opened ? 0 : 1,
+          pointerEvents: opened ? "none" : "all",
+          transition: "opacity 1s ease",
+          zIndex: 10,
         }}
       >
         <h1
