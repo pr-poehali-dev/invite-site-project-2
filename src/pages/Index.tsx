@@ -9,10 +9,11 @@ export default function Index() {
   return (
     <div className="w-full font-cormorant" style={{ maxWidth: 480, margin: "0 auto" }}>
 
-      {/* ── СЛАЙД 1: только "Айттыру" ── */}
+      {/* ── СЛАЙД 1: только "Айттыру", фон на весь экран ── */}
       <div
-        className="fixed inset-0 flex items-center justify-center"
+        className="fixed flex flex-col items-center justify-center"
         style={{
+          top: 0, left: 0, right: 0, bottom: 0,
           backgroundImage: `url('${BG_PATTERN}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -20,26 +21,34 @@ export default function Index() {
           pointerEvents: opened ? "none" : "all",
           zIndex: 20,
           transition: "opacity 1.2s ease",
-          maxWidth: 480,
-          left: "50%",
-          transform: "translateX(-50%)",
         }}
       >
+        <h1
+          className="font-cormorant-sc font-light text-center"
+          style={{
+            fontSize: "clamp(4.5rem, 22vw, 8rem)",
+            color: "#4a2e10",
+            letterSpacing: "0.08em",
+            lineHeight: 1,
+          }}
+        >
+          Айттыру
+        </h1>
+
         <button
           onClick={() => setOpened(true)}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          className="absolute bottom-12 flex flex-col items-center gap-2"
+          style={{ background: "none", border: "none", cursor: "pointer", left: "50%", transform: "translateX(-50%)" }}
         >
-          <h1
-            className="font-cormorant-sc font-light text-center"
-            style={{
-              fontSize: "clamp(4.5rem, 22vw, 8rem)",
-              color: "#4a2e10",
-              letterSpacing: "0.08em",
-              lineHeight: 1,
-            }}
+          <span className="font-cormorant tracking-[0.2em] text-xs uppercase" style={{ color: "#8a6530" }}>открыть</span>
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ border: "1px solid rgba(160,120,64,0.45)", background: "rgba(245,239,227,0.35)" }}
           >
-            Айттыру
-          </h1>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 2v10M2 8l5 5 5-5" stroke="#8a6530" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </button>
       </div>
 
