@@ -56,7 +56,8 @@ export default function Index() {
         margin: "0 auto",
         height: "100dvh",
         overflowY: "scroll",
-        scrollSnapType: "y mandatory",
+        scrollSnapType: "y proximity",
+        scrollBehavior: "smooth",
       }}
     >
 
@@ -246,39 +247,17 @@ export default function Index() {
         </div>
       </div>
 
-      {/* ── СЛАЙД 5: Пара ── */}
+      {/* ── СЛАЙД 5: Пара — чистая, без оверлеев ── */}
       <div
         ref={couple.ref}
-        className="relative flex items-end justify-center"
         style={{
           height: "100dvh",
           scrollSnapAlign: "start",
           backgroundImage: `url('${BG_COUPLE}')`,
           backgroundSize: "cover",
           backgroundPosition: "center top",
-          overflow: "hidden",
         }}
-      >
-        {/* плавный переход сверху */}
-        <div
-          className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: "22%",
-            background: "linear-gradient(to bottom, #f5efe3, transparent)",
-          }}
-        />
-        <div
-          className="absolute bottom-10 z-10 text-center"
-          style={fade(couple.visible, 0.3)}
-        >
-          <p
-            className="font-cormorant italic font-light"
-            style={{ fontSize: "clamp(1.1rem, 5vw, 1.5rem)", color: "#3a2210" }}
-          >
-            Силерди кӧрӧргӧ <span style={{ color: "#8a6530" }}>сакып јадыбыс</span>
-          </p>
-        </div>
-      </div>
+      />
 
     </div>
   );
